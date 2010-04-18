@@ -1,24 +1,16 @@
-#
-%if "%{pld_release}" == "ti"
-%bcond_without	java_sun	# build with gcj
-%else
-%bcond_with	java_sun	# build with java-sun
-%endif
 
-%define		pkg	jicmp
+%define		srcname	jicmp
 
 %include	/usr/lib/rpm/macros.java
 Summary:	Java interface to ICMP (ping)
-Name:		java-%{pkg}
+Name:		java-%{srcname}
 Version:	1.0.10
 Release:	1
 License:	GPL
 Group:		Libraries/Java
-Source0:	http://dl.sourceforge.net/opennms/%{pkg}-%{version}.tar.gz
+Source0:	http://downloads.sourceforge.net/opennms/%{srcname}-%{version}.tar.gz
 # Source0-md5:	6473716859058697ae78a7d70c6aebbf
-%{!?with_java_sun:BuildRequires:	java-gcj-compat-devel}
-%{?with_java_sun:BuildRequires:	java-sun}
-BuildRequires:	rpm >= 4.4.9-56
+BuildRequires:	jdk
 BuildRequires:	rpm-javaprov
 BuildRequires:	rpmbuild(macros) >= 1.300
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
@@ -28,7 +20,7 @@ JICMP is a Java interface to the ICMP protocol (ping), originally
 written as a part of OpenNMS.
 
 %prep
-%setup -q -n %{pkg}-%{version}
+%setup -q -n %{srcname}-%{version}
 
 %build
 export JAVA_HOME=%{java_home}
