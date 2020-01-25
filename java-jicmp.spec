@@ -1,7 +1,6 @@
 
 %define		srcname	jicmp
 
-%include	/usr/lib/rpm/macros.java
 Summary:	Java interface to ICMP (ping)
 Name:		java-%{srcname}
 Version:	1.0.10
